@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{microtype}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{setspace}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{graphicx}
+\setcounter{tocdepth}{3}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+\title{\Huge{CSC546:Machine Learning and its Applications }\\\LARGE{Homework 1}}
+\author{Aaron Jesus Valdes}
+\begin{document}
+	\maketitle
+	\clearpage
+	\section*{Part I}
+		\subsection*{1}
+			\subsubsection*{a}
+				\begin{align}
+					x_1\begin{bmatrix}
+					1\\2
+					\end{bmatrix}&
+					&x_2\begin{bmatrix}
+					10\\18
+					\end{bmatrix} \\
+					||x-y||_2=&\sqrt{(x[1]-y[1])^2 +(x[2]-y[2])^2}\\
+					||x-y||_2=&\sqrt{(1-10)^2 +(2-18)^2}\\
+					||x-y||_2=&\sqrt{337}\approx 18.3575\\
+				\end{align}
+			\subsubsection*{b}
+				\begin{align}
+				x_1\begin{bmatrix}
+				1\\2
+				\end{bmatrix}&
+				&x_2\begin{bmatrix}
+				10\\18
+				\end{bmatrix} \\
+				L_1=&(x[1]-y[1]) + (x[2]-y[2])\\
+				L_1=&|1-10| + |2-18|\\
+				L_1=&25\\
+				\end{align}
+			\subsubsection*{c}
+				\begin{align}
+				x_1\begin{bmatrix}
+				1\\2
+				\end{bmatrix}&
+				&x_2\begin{bmatrix}
+				10\\18
+				\end{bmatrix} \\
+				L_1=&max(max(|x[1]-y[1]|)max(|x[2]-y[2]|))\\
+				L_1=&max(max(|1-10|)max(|2-18|))\\
+				L_1=&max(max(|9|)max(|16|))\\
+				L_1=&max(16)\\
+				L_1=&16\\
+				\end{align}
+			\subsubsection*{d}
+				The $L\inf$ does not make sense for these two features since this can lead to the loss of essential features for customer segregation given the fact that both spend and income provide vital role in clustering customers.
+		\subsection*{2}
+			\begin{align}
+				f(x)=&x^T Ax &x=\begin{bmatrix} \alpha \\\beta \end{bmatrix} &&A=\begin{bmatrix} a & c \\ c & b \end{bmatrix}\\
+				f(\begin{bmatrix} \alpha \\\beta \end{bmatrix})=&\begin{bmatrix} \alpha \\\beta \end{bmatrix}^T\begin{bmatrix} a & c \\ c & b \end{bmatrix}\begin{bmatrix} \alpha \\\beta \end{bmatrix} \\
+				f(\begin{bmatrix} \alpha \\\beta \end{bmatrix})=&\begin{bmatrix} \alpha &\beta \end{bmatrix}\begin{bmatrix} a & c \\ c & b \end{bmatrix}\begin{bmatrix} \alpha \\\beta \end{bmatrix} \\
+				f(\begin{bmatrix} \alpha \\\beta \end{bmatrix})=&\begin{bmatrix} \alpha a +\beta c & \alpha c + \beta b \end{bmatrix}\begin{bmatrix} \alpha \\\beta \end{bmatrix} \\
+				f(\begin{bmatrix} \alpha \\\beta \end{bmatrix})=&\begin{bmatrix} \alpha^2 a + 2\alpha\beta c +\beta^2b \end{bmatrix} \\
+				f(x)=&\begin{bmatrix} \alpha^2 a + 2\alpha\beta c +\beta^2b \end{bmatrix}\\
+				\dv{f}{x}f(x)=&\dv{f}{x}\begin{bmatrix} \alpha^2 a + 2\alpha\beta c +\beta^2b \end{bmatrix} & \dv{f}{x}=\begin{bmatrix}  \dv{f}{\alpha} \\ \dv{f}{\beta}\end{bmatrix}\\
+				\dv{f}{x}f(x)=&\begin{bmatrix} \dv{f}{\alpha} \\ \dv{f}{\beta} \end{bmatrix}\begin{bmatrix} \alpha^2 a + 2\alpha\beta c +\beta^2b \end{bmatrix} \\
+				\dv{f}{x}f(x)=&\begin{bmatrix} \dv{f}{\alpha} \alpha^2 a + 2\alpha\beta c +\beta^2b \\ \dv{f}{\beta}\alpha^2 a + 2\alpha\beta c +\beta^2b \end{bmatrix}\\
+				\dv{f}{x}f(x)=&\begin{bmatrix} 2\alpha a + 2\beta c\\ \alpha c +2\beta b \end{bmatrix}\\
+				2Ax=&\begin{bmatrix} 2\alpha a + 2\beta c\\ \alpha c +2\beta b \end{bmatrix}\\
+				2\begin{bmatrix} a & b \\ b & c  \end{bmatrix} \begin{bmatrix}  \alpha \\ \beta \end{bmatrix}=&\begin{bmatrix} 2\alpha a + 2\beta c\\ \alpha c +2\beta b \end{bmatrix}\\
+				\begin{bmatrix} 2\alpha a + 2\beta c\\ \alpha c +2\beta b \end{bmatrix}=&\begin{bmatrix} 2\alpha a + 2\beta c\\ \alpha c +2\beta b \end{bmatrix}\\
+			\end{align}
+		\subsection*{3}
+			The main steps for each iteration are 1) finding the distances between the center and each point and 2) updating the location of the centroids
+		\subsection*{4}
+			Sk.learn uses euclidean distance or $L_2$ norm 
+		\subsection*{5}
+			Given the fact that that maximum amount of clusters is a finite number which is equivalent the amount of points therefore it must converge.
+		\subsection*{6}
+			If the position of the centers are randomly initialized then you can have random sets of cluster for the same data and therefore the results are random
+		\subsection*{7}
+			When there the same number of clusters as data points in our data
+	\section*{Part II}
+\end{document}
